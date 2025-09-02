@@ -32,8 +32,10 @@ const TodoList = () => {
   );
 
   return (
+    <>
+    <div className="scanlines"></div>
     <div className="todo-container">
-      <h1>Todo List App</h1>
+      <h1 className="retro-title">RETRO TODO</h1>
       
       <div className="search-container">
         <input
@@ -84,6 +86,7 @@ const TodoList = () => {
         </p>
       )}
     </div>
+    </>
   );
 };
 

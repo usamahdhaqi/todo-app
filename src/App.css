@@ -1,14 +1,78 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff70a6 0%, #ff9770 25%, #ffd670 50%, #e9ff70 75%, #9ee0ff 100%);
+  padding: 20px;
+  font-family: 'Courier New', monospace;
 }
 
 body {
-  background-color: #f5f5f5;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Courier New', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Retro pixel animation background */
+.App::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: -1;
+  pointer-events: none;
+  animation: moveBackground 120s linear infinite;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 1000px 1000px;
+  }
+}
+
+/* Retro title styling */
+.retro-title {
+  font-family: 'Press Start 2P', cursive;
+  color: #5a189a;
+  text-shadow: 3px 3px 0 #ff9e00;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+}
+
+/* Add some retro pixel elements */
+.retro-pixel {
+  image-rendering: pixelated;
+}
+
+/* Custom cursor for retro feel */
+body {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><rect width='16' height='16' fill='%235a189a'/><rect x='4' y='4' width='8' height='8' fill='%23ff9e00'/></svg>") 8 8, auto;
+}
+
+/* Add some retro scanlines effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.03) 50%,
+      rgba(0, 0, 0, 0.1) 50%
+    );
+  background-size: 100% 4px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.2;
 }
