@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './TodoList.css';
 
 const TodoList = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    const saved = localStorage.getItem("todos");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [inputValue, setInputValue] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [filter, setFilter] = useState('all'); // all | active | completed
+  const [editingId, setEditingId] = useState(null);
+  const [editValue, setEditValue] = useState('');
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = () => {
     if (inputValue.trim() !== '') {
@@ -27,16 +37,44 @@ const TodoList = () => {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
+  const startEditing = (id, text) => {
+    setEditingId(id);
+    setEditValue(text);
+  };
+
+  const saveEdit = (id) => {
+    setTodos(todos.map(todo => 
+      todo.id === id ? { ...todo, text: editValue } : todo
+    ));
+    setEditingId(null);
+    setEditValue('');
+  };
+
   const filteredTodos = todos.filter(todo =>
     todo.text.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ).filter(todo => {
+    if (filter === 'completed') return todo.completed;
+    if (filter === 'active') return !todo.completed;
+    return true;
+  });
+
+  const progress = todos.length > 0 
+    ? Math.round((todos.filter(t => t.completed).length / todos.length) * 100) 
+    : 0;
 
   return (
     <>
     <div className="scanlines"></div>
     <div className="todo-container">
       <h1 className="retro-title">RETRO TODO</h1>
-      
+
+      {/* Progress bar */}
+      <div className="progress-bar">
+        <div className="progress-fill" style={{ width: `${progress}%` }}></div>
+      </div>
+      <p>{progress}% selesai</p>
+
+      {/* Search */}
       <div className="search-container">
         <input
           type="text"
@@ -46,7 +84,8 @@ const TodoList = () => {
           className="search-input"
         />
       </div>
-      
+
+      {/* Add */}
       <div className="add-todo-container">
         <input
           type="text"
@@ -60,26 +99,53 @@ const TodoList = () => {
           Tambah
         </button>
       </div>
-      
+
+      {/* Filter */}
+      <div className="filter-container">
+        <button onClick={() => setFilter('all')}>Semua</button>
+        <button onClick={() => setFilter('active')}>Aktif</button>
+        <button onClick={() => setFilter('completed')}>Selesai</button>
+      </div>
+
+      {/* Todo list */}
       <ul className="todo-list">
         {filteredTodos.map(todo => (
           <li key={todo.id} className={`todo-item ${todo.completed ? 'completed' : ''}`}>
-            <span 
-              onClick={() => toggleTodo(todo.id)}
-              className="todo-text"
-            >
-              {todo.text}
-            </span>
-            <button 
-              onClick={() => deleteTodo(todo.id)}
-              className="delete-button"
-            >
-              Hapus
-            </button>
+            {editingId === todo.id ? (
+              <>
+                <input 
+                  type="text" 
+                  value={editValue} 
+                  onChange={(e) => setEditValue(e.target.value)} 
+                />
+                <button onClick={() => saveEdit(todo.id)}>Simpan</button>
+              </>
+            ) : (
+              <>
+                <span 
+                  onClick={() => toggleTodo(todo.id)}
+                  className="todo-text"
+                >
+                  {todo.text}
+                </span>
+                <button 
+                  onClick={() => startEditing(todo.id, todo.text)} 
+                  className="edit-button"
+                >
+                  Edit
+                </button>
+                <button 
+                  onClick={() => deleteTodo(todo.id)}
+                  className="delete-button"
+                >
+                  Hapus
+                </button>
+              </>
+            )}
           </li>
         ))}
       </ul>
-      
+
       {filteredTodos.length === 0 && (
         <p className="empty-message">
           {searchTerm ? 'Todo tidak ditemukan' : 'Tidak ada todo'}
