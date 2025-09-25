@@ -27,17 +27,20 @@ const TodoList = () => {
       }]);
       setInputValue('');
     }
+    playSound("/sounds/click.wav");
   };
 
   const toggleTodo = (id) => {
     setTodos(todos.map(todo => 
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     ));
+    playSound("/sounds/click.wav");
   };
 
   const startEditing = (id, text) => {
     setEditingId(id);
     setEditValue(text);
+    playSound("/sounds/click.wav");
   };
 
   const saveEdit = (id) => {
@@ -46,22 +49,32 @@ const TodoList = () => {
     ));
     setEditingId(null);
     setEditValue('');
+    playSound("/sounds/click.wav");
   };
 
   const confirmDelete = (id) => {
     setShowConfirm(true);
     setDeleteId(id);
+    playSound("/sounds/popup.wav");
   };
 
   const handleDelete = () => {
     setTodos(todos.filter(todo => todo.id !== deleteId));
     setShowConfirm(false);
     setDeleteId(null);
+    playSound("/sounds/click.wav");
   };
 
   const cancelDelete = () => {
     setShowConfirm(false);
     setDeleteId(null);
+    playSound("/sounds/click.wav");
+  };
+
+  const playSound = (file) => {
+    const audio = new Audio(file);
+    audio.volume = 0.5; // bisa disesuaikan
+    audio.play();
   };
 
   const filteredTodos = todos.filter(todo =>
@@ -116,9 +129,15 @@ const TodoList = () => {
 
       {/* Filter */}
       <div className="filter-container">
-        <button onClick={() => setFilter('all')}>Semua</button>
-        <button onClick={() => setFilter('active')}>Aktif</button>
-        <button onClick={() => setFilter('completed')}>Selesai</button>
+        <button onClick={() => { setFilter('all'); playSound("/sounds/click.wav"); }}>
+          Semua
+        </button>
+        <button onClick={() => { setFilter('active'); playSound("/sounds/click.wav"); }}>
+          Aktif
+        </button>
+        <button onClick={() => { setFilter('completed'); playSound("/sounds/click.wav"); }}>
+          Selesai
+        </button>
       </div>
 
       {/* Todo list */}
