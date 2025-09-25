@@ -368,3 +368,80 @@ h1 {
   transform: translateY(0);
   box-shadow: 0 1px 0 #004b23;
 }
+
+/* Overlay gelap transparan */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(60, 9, 108, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+/* Kotak popup retro */
+.popup-box {
+  background: #ffd6ff;
+  border: 4px solid #ff9e00;
+  border-radius: 12px;
+  padding: 25px;
+  width: 320px;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  animation: popupScale 0.3s ease;
+}
+
+.popup-box h3 {
+  margin: 0 0 15px;
+  font-size: 1.5rem;
+  color: #5a189a;
+  text-shadow: 2px 2px 0px #ff9e00;
+}
+
+.popup-box p {
+  margin-bottom: 20px;
+  color: #3c096c;
+  font-weight: bold;
+}
+
+/* Tombol dalam popup */
+.popup-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.cancel-button {
+  background-color: #5a189a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  box-shadow: 0 3px 0 #3c096c;
+  transition: all 0.3s ease;
+}
+
+.cancel-button:hover {
+  background-color: #7b2cbf;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 #3c096c;
+}
+
+.cancel-button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 0 #3c096c;
+}
+
+/* Animasi muncul */
+@keyframes popupScale {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

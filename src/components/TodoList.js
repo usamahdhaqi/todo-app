@@ -11,6 +11,8 @@ const TodoList = () => {
   const [filter, setFilter] = useState('all'); // all | active | completed
   const [editingId, setEditingId] = useState(null);
   const [editValue, setEditValue] = useState('');
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -33,10 +35,6 @@ const TodoList = () => {
     ));
   };
 
-  const deleteTodo = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id));
-  };
-
   const startEditing = (id, text) => {
     setEditingId(id);
     setEditValue(text);
@@ -48,6 +46,22 @@ const TodoList = () => {
     ));
     setEditingId(null);
     setEditValue('');
+  };
+
+  const confirmDelete = (id) => {
+    setShowConfirm(true);
+    setDeleteId(id);
+  };
+
+  const handleDelete = () => {
+    setTodos(todos.filter(todo => todo.id !== deleteId));
+    setShowConfirm(false);
+    setDeleteId(null);
+  };
+
+  const cancelDelete = () => {
+    setShowConfirm(false);
+    setDeleteId(null);
   };
 
   const filteredTodos = todos.filter(todo =>
@@ -139,7 +153,7 @@ const TodoList = () => {
                   Edit
                 </button>
                 <button 
-                  onClick={() => deleteTodo(todo.id)} 
+                  onClick={() => confirmDelete(todo.id)} 
                   className="delete-button"
                 >
                   Hapus
@@ -149,6 +163,19 @@ const TodoList = () => {
           </li>
         ))}
       </ul>
+
+      {showConfirm && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <h3>Konfirmasi</h3>
+            <p>Kamu yakin ingin menghapus todo ini?</p>
+            <div className="popup-actions">
+              <button onClick={handleDelete} className="delete-button">Ya, Hapus</button>
+              <button onClick={cancelDelete} className="cancel-button">Batal</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {filteredTodos.length === 0 && (
         <p className="empty-message">
