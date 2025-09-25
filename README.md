@@ -2,6 +2,10 @@
 
 Aplikasi Todo List sederhana yang dibangun dengan React.js. Memiliki fitur pencarian untuk memfilter daftar todo.
 
+[![GitHub stars](https://img.shields.io/github/stars/usamahdhaqi/todo-app?style=for-the-badge)](https://github.com/usamahdhaqi/todo-app/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/usamahdhaqi/todo-app?style=for-the-badge)](https://github.com/usamahdhaqi/todo-app/issues)
+[![GitHub license](https://img.shields.io/github/license/usamahdhaqi/todo-app?style=for-the-badge)](https://github.com/usamahdhaqi/todo-app/blob/main/LICENSE)
+
 ## Fitur
 
 - Menambah todo baru
