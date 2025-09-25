@@ -117,6 +117,8 @@ const TodoList = () => {
                   type="text" 
                   value={editValue} 
                   onChange={(e) => setEditValue(e.target.value)} 
+                  onKeyDown={(e) => e.key === "Enter" && saveEdit(todo.id)} 
+                  autoFocus
                 />
                 <button onClick={() => saveEdit(todo.id)} className="save-button">
                   Simpan
@@ -137,7 +139,7 @@ const TodoList = () => {
                   Edit
                 </button>
                 <button 
-                  onClick={() => deleteTodo(todo.id)}
+                  onClick={() => deleteTodo(todo.id)} 
                   className="delete-button"
                 >
                   Hapus
