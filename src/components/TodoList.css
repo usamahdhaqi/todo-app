@@ -344,3 +344,27 @@ h1 {
   transform: translateY(0);
   box-shadow: 0 1px 0 #1b4332;
 }
+
+.save-button {
+  background-color: #007f5f; /* hijau segar */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 0 #004b23;
+}
+
+.save-button:hover {
+  background-color: #2b9348; /* hijau lebih terang */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 #004b23;
+}
+
+.save-button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 0 #004b23;
+}

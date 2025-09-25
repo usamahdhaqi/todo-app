@@ -118,7 +118,9 @@ const TodoList = () => {
                   value={editValue} 
                   onChange={(e) => setEditValue(e.target.value)} 
                 />
-                <button onClick={() => saveEdit(todo.id)}>Simpan</button>
+                <button onClick={() => saveEdit(todo.id)} className="save-button">
+                  Simpan
+                </button>
               </>
             ) : (
               <>
