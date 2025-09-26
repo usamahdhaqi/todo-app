@@ -23,8 +23,7 @@
 
 ## 📸 Preview
 
-![Preview Screenshot](./public/screenshot-todo-app.PNG)  
-*(Contoh screenshot aplikasi Retro Todo)*
+![Preview Screenshot](./public/screenshot-todo-app.PNG)
 
 ---
 
