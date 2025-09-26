@@ -1,8 +1,8 @@
 # 🕹️ Retro Todo List (React)
 
-![Stars](https://img.shields.io/github/stars/yourusername/retro-todo?style=for-the-badge&color=ff6b00)  
-![Forks](https://img.shields.io/github/forks/yourusername/retro-todo?style=for-the-badge&color=9d4edd)  
-![License](https://img.shields.io/github/license/yourusername/retro-todo?style=for-the-badge&color=5a189a)  
+![Stars](https://img.shields.io/github/stars/usamahdhaqi/todo-app?style=for-the-badge&color=ff6b00)  
+![Forks](https://img.shields.io/github/forks/usamahdhaqi/todo-app?style=for-the-badge&color=9d4edd)  
+![License](https://img.shields.io/github/license/usamahdhaqi/todo-app?style=for-the-badge&color=5a189a)  
 ![React](https://img.shields.io/badge/React-18.2.0-blue?style=for-the-badge&logo=react)
 
 ✨ Aplikasi **Todo List** dengan sentuhan **retro 8-bit**! Dibuat menggunakan **React** dengan desain colorful, animasi retro, dan efek suara klasik.  
@@ -51,8 +51,8 @@ src/
 
 1. Clone repository ini:
    ```bash
-   git clone https://github.com/yourusername/retro-todo.git
-   cd retro-todo
+   git clone https://github.com/usamahdhaqi/todo-app.git
+   cd todo-app
    ```
 
 2. Install dependencies:
@@ -94,7 +94,6 @@ Silakan digunakan, diubah, dan dikembangkan sesuai kebutuhan ✨
 
 ### 💡 Catatan
 - Folder `/public/sounds` digunakan untuk menyimpan efek suara retro (`click.wav`, `popup.wav`).  
-- Agar README lebih keren, jangan lupa tambahkan screenshot aplikasi (file `screenshot.png`).  
 
 ---
 
